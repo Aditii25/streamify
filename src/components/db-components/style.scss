@@ -1,0 +1,104 @@
+.send-stream-main {
+  //   border: 1px solid black;
+  width: 80%;
+  margin: auto;
+  max-width: 700px;
+  padding-bottom: 10px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+  position: relative;
+  z-index: 5;
+
+  .header {
+    padding: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #7d33f6;
+    color: white;
+    text-transform: capitalize;
+  }
+  .form {
+    margin: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .field-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .token-flow {
+      display: flex;
+      width: 100%;
+      gap: 1rem;
+      .token {
+        width: 40%;
+      }
+      .flow {
+        width: calc(100% - 40% - 1rem);
+      }
+    }
+    .action-btn {
+      width: 100%;
+      background-color: #7d33f6e6;
+      color: white;
+      border: 1px solid #7d33f6e6;
+      border-radius: 10px;
+      padding: 15px 0px;
+      font-size: 1rem;
+      font-weight: 700;
+
+      &:hover {
+        background-color: #7d33f6;
+        border: 1px solid #7d33f6;
+      }
+    }
+
+    .date-time-picker {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      .start-date {
+        width: 50%;
+      }
+      .end-date {
+        width: 50%;
+      }
+    }
+    hr {
+      border-color: "#0000001F";
+      margin: 5px 0px;
+    }
+  }
+}
+
+div.wallet-not-connected {
+  // border: 1px solid black;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  z-index: 100000;
+  min-height: 70vh;
+
+  .connect-wallet-cst {
+    cursor: pointer;
+    background-color: #7d33f6;
+    border: 1px solid #7d33f6;
+    color: #fff;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    font-weight: 600;
+    padding: 10px 20px;
+    width: max-content;
+    transition: all 0.1s ease-in-out;
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}
