@@ -2,9 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Home.scss";
 import bg1 from "../assets/bg.png";
+import laptop from "../assets/laptop.png";
 import gelato from "../assets/gelato-logo.png";
 import superfluid from "../assets/superfluid-logo.png";
 import { faqs } from "../components/faqsData";
+import "animate.css";
 // material ui imnports
 import { styled } from "@mui/material/styles";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
@@ -76,11 +78,38 @@ function Home() {
       behavior: "smooth",
     });
   };
+
   return (
     <div className="home-main" ref={homeSection}>
       <nav className={scrollTop > 0 ? "scrolled" : ""}>
         <div className={scrollTop > 0 ? "inside-nav scrolled" : "inside-nav"}>
-          <h1>Logo</h1>
+          <h1>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              enable-background="new 0 0 24 24"
+              height="36px"
+              viewBox="0 0 24 24"
+              width="36px"
+              fill="#7d33f6"
+            >
+              <g>
+                <rect fill="none" height="24" width="24" />
+              </g>
+              <g>
+                <g>
+                  <circle cx="20" cy="12" r="2" />
+                  <circle cx="4" cy="12" r="2" />
+                  <circle cx="12" cy="20" r="2" />
+                  <path d="M7.89,14.65l-2.94,2.93c-0.39,0.39-0.39,1.02,0,1.41s1.02,0.39,1.41,0l2.94-2.93c0.39-0.38,0.39-1.02,0-1.41 C8.91,14.26,8.28,14.26,7.89,14.65z" />
+                  <path d="M6.41,4.94C6.02,4.55,5.39,4.55,5,4.94C4.61,5.33,4.61,5.96,5,6.35l2.93,2.94c0.39,0.39,1.02,0.39,1.42,0 C9.73,8.9,9.73,8.27,9.34,7.88L6.41,4.94z" />
+                  <path d="M16.12,14.65c-0.39-0.39-1.02-0.39-1.42,0c-0.39,0.39-0.39,1.02,0,1.41L17.64,19c0.39,0.39,1.02,0.39,1.41,0 s0.39-1.02,0-1.41L16.12,14.65z" />
+                  <path d="M16.06,9.33l2.99-2.98c0.39-0.4,0.39-1.03,0-1.42c-0.39-0.39-1.02-0.39-1.41,0l-2.99,2.98c-0.39,0.39-0.39,1.02,0,1.42 C15.04,9.72,15.67,9.72,16.06,9.33z" />
+                  <circle cx="12" cy="4" r="2" />
+                </g>
+              </g>
+            </svg>
+            <span>Streamify</span>
+          </h1>
           <ul>
             <li onClick={() => handleNavClick(homeSection)}>Home</li>
             <li onClick={() => handleNavClick(featuresSection)}>Features</li>
@@ -93,7 +122,7 @@ function Home() {
         </div>
       </nav>
       <div className="hero">
-        <div className="hero-left animate__animated animate__backInLeft animate__slow">
+        <div className="hero-left animate__animated animate__fadeIn animate__slow">
           <p className="hero-p">Streamify</p>
           <h1 className="hero-h1">
             The Simplest Way to Automate Your Superfluid Streams
@@ -110,9 +139,30 @@ function Home() {
             </button>
           </div>
         </div>
-        <div className="hero-right animate__animated animate__backInRight animate__slow">
+        <div className="hero-right animate__animated animate__fadeIn animate__slow">
           <div className="hero-right-inside">
-            <img className="hero-right-bg1" src={bg1} alt="background" />
+            <div className="img" id="tilt">
+              <img className="hero-right-bg1" src={laptop} alt="background" />
+              <img className="laptop-screen" src={bg1} alt="background" />
+            </div>
+            <svg
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+              className="background"
+            >
+              <defs>
+                <radialGradient id="fill" cx="50%" cy="50%">
+                  <stop offset="0%" stopColor="#4F46E5"></stop>
+                  <stop offset="100%" stopColor="#ffffff"></stop>
+                </radialGradient>
+              </defs>
+              <path
+                d="M95,64.5Q90,79,77.5,88.5Q65,98,50,98Q35,98,22.5,88.5Q10,79,5,64.5Q0,50,5,35.5Q10,21,22.5,11.5Q35,2,50,2Q65,2,77.5,11.5Q90,21,95,35.5Q100,50,95,64.5Z"
+                stroke="none"
+                strokeWidth="0"
+                fill="url(#fill)"
+              ></path>
+            </svg>
           </div>
         </div>
       </div>
@@ -243,7 +293,33 @@ function Home() {
         </div>
       </div>
       <div className="footer">
-        <div className="logo">LOGO</div>
+        <div className="logo">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            enable-background="new 0 0 24 24"
+            height="36px"
+            viewBox="0 0 24 24"
+            width="36px"
+            fill="#7d33f6"
+          >
+            <g>
+              <rect fill="none" height="24" width="24" />
+            </g>
+            <g>
+              <g>
+                <circle cx="20" cy="12" r="2" />
+                <circle cx="4" cy="12" r="2" />
+                <circle cx="12" cy="20" r="2" />
+                <path d="M7.89,14.65l-2.94,2.93c-0.39,0.39-0.39,1.02,0,1.41s1.02,0.39,1.41,0l2.94-2.93c0.39-0.38,0.39-1.02,0-1.41 C8.91,14.26,8.28,14.26,7.89,14.65z" />
+                <path d="M6.41,4.94C6.02,4.55,5.39,4.55,5,4.94C4.61,5.33,4.61,5.96,5,6.35l2.93,2.94c0.39,0.39,1.02,0.39,1.42,0 C9.73,8.9,9.73,8.27,9.34,7.88L6.41,4.94z" />
+                <path d="M16.12,14.65c-0.39-0.39-1.02-0.39-1.42,0c-0.39,0.39-0.39,1.02,0,1.41L17.64,19c0.39,0.39,1.02,0.39,1.41,0 s0.39-1.02,0-1.41L16.12,14.65z" />
+                <path d="M16.06,9.33l2.99-2.98c0.39-0.4,0.39-1.03,0-1.42c-0.39-0.39-1.02-0.39-1.41,0l-2.99,2.98c-0.39,0.39-0.39,1.02,0,1.42 C15.04,9.72,15.67,9.72,16.06,9.33z" />
+                <circle cx="12" cy="4" r="2" />
+              </g>
+            </g>
+          </svg>
+          <span>Streamify</span>
+        </div>
         <div className="footer-info">
           Build at Superfluid Wavepool
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">

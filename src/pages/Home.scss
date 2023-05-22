@@ -1,4 +1,13 @@
 .home-main {
+  h1 {
+    color: #000000;
+    font-weight: 700;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
   nav {
     width: 100%;
     z-index: 150;
@@ -151,11 +160,36 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
 
-        img.hero-right-bg1 {
+        svg.background {
+          position: absolute;
+          z-index: 1;
+          opacity: 0.4;
+        }
+        .img {
+          position: relative;
+          z-index: 5;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           height: 50%;
           width: 80%;
-          border-radius: 1rem;
+          // border-radius: 1rem;
+          transition: box-shadow 0.1s, transform 0.1s;
+
+          img.hero-right-bg1 {
+            width: 100%;
+            height: 50%;
+            position: relative;
+            z-index: 5;
+          }
+          img.laptop-screen {
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            max-width: 80%;
+          }
         }
       }
     }
@@ -350,11 +384,25 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
+    align-items: center;
     width: 90%;
     max-width: 1240px;
     margin: auto;
     padding: 20px 0px;
     border-top: 1px solid #f5f5f4;
+
+    .logo {
+      color: #000000;
+      font-weight: 700;
+      font-size: 1.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      svg {
+        width: 30px;
+      }
+    }
     .footer-info {
       font-size: 1rem;
       font-weight: 500;

@@ -12,7 +12,15 @@
     align-items: center;
     padding-top: 20px;
     background-color: #7d33f6;
-
+    h1 {
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
     ul {
       padding-top: 30px;
       list-style: none;

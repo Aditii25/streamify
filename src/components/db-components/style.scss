@@ -68,6 +68,15 @@
         width: 50%;
       }
     }
+    .add-update-svg {
+      width: max-content;
+      margin: auto;
+      svg {
+        width: 35px;
+        height: 35px;
+        fill: #7d33f6;
+      }
+    }
     hr {
       border-color: "#0000001F";
       margin: 5px 0px;
