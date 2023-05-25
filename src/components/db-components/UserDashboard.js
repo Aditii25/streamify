@@ -59,8 +59,8 @@ function UserDashboard() {
             </div>
             <div className="grid-item">
               <div className="grid-item-left">
-                <span className="title">12389</span>
-                <span className="info">Total Streamed Token</span>
+                <span className="title">Polygon</span>
+                <span className="info">Network</span>
               </div>
               <div className="grid-item-right">
                 <svg
