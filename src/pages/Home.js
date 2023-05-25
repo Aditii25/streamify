@@ -79,14 +79,23 @@ function Home() {
     });
   };
 
+  useEffect(() => {
+    const textContainer = document.querySelector(".animated-text");
+    const letters = textContainer.querySelectorAll("span");
+
+    letters.forEach((letter, index) => {
+      letter.style.animationDelay = `${index * 70}ms`;
+    });
+  });
+
   return (
     <div className="home-main" ref={homeSection}>
       <nav className={scrollTop > 0 ? "scrolled" : ""}>
         <div className={scrollTop > 0 ? "inside-nav scrolled" : "inside-nav"}>
-          <h1>
+          <div className="logo-streamify">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              enable-background="new 0 0 24 24"
+              enableBackground="new 0 0 24 24"
               height="36px"
               viewBox="0 0 24 24"
               width="36px"
@@ -108,8 +117,19 @@ function Home() {
                 </g>
               </g>
             </svg>
-            <span>Streamify</span>
-          </h1>
+            {/* <span>Streamify</span> */}
+            <div className="animated-text">
+              <span>S</span>
+              <span>t</span>
+              <span>r</span>
+              <span>e</span>
+              <span>a</span>
+              <span>m</span>
+              <span>i</span>
+              <span>f</span>
+              <span>y</span>
+            </div>
+          </div>
           <ul>
             <li onClick={() => handleNavClick(homeSection)}>Home</li>
             <li onClick={() => handleNavClick(featuresSection)}>Features</li>
@@ -296,7 +316,7 @@ function Home() {
         <div className="logo">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            enable-background="new 0 0 24 24"
+            enableBackground="new 0 0 24 24"
             height="36px"
             viewBox="0 0 24 24"
             width="36px"

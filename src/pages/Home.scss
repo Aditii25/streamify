@@ -1,13 +1,4 @@
 .home-main {
-  h1 {
-    color: #000000;
-    font-weight: 700;
-    font-size: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-  }
   nav {
     width: 100%;
     z-index: 150;
@@ -20,6 +11,31 @@
     transition: all 0.1s ease-in-out;
     display: flex;
     align-items: center;
+    .logo-streamify {
+      color: #000000;
+      font-weight: 700;
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    .animated-text {
+      display: inline-block;
+      position: relative;
+
+      span {
+        position: relative;
+        display: inline-block;
+        // transition: ani 0.3s;
+      }
+
+      &:hover {
+        span {
+          animation: ani 0.4s linear;
+        }
+      }
+    }
 
     button {
       border-radius: 10px;
@@ -431,5 +447,17 @@
     .hero-right {
       width: 80%;
     }
+  }
+}
+
+@keyframes ani {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0%);
   }
 }
