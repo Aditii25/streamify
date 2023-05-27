@@ -4,6 +4,20 @@
   position: relative;
   z-index: 100;
 
+  .back-div {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #7d33f6;
+    background-color: #f6f6f6;
+    gap: 5px;
+    margin: 0 1.5rem;
+    font-size: large;
+    font-weight: 700;
+  }
   .stats-main {
     // border: 1px solid black;
     margin: 1.5rem;
@@ -190,6 +204,22 @@
           color: rgba(18, 20, 30, 0.87);
           padding: 10px 32px;
           min-height: 0px;
+          .date-main {
+            display: flex;
+            flex-direction: column;
+            .date {
+              text-align: left;
+              color: rgba(18, 20, 30, 0.87);
+              font-size: 0.875rem;
+              font-weight: 400;
+              letter-spacing: 0.17px;
+              line-height: 1.429;
+              font-family: Walsheim, Arial;
+              padding: 0;
+              // padding: 8px 32px 8px 8px;
+              cursor: pointer;
+            }
+          }
         }
         span {
           font-weight: 600;

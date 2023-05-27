@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import "./Dashboard.scss";
 import SendStream from "../components/db-components/SendStream";
@@ -7,17 +7,26 @@ import UserDashboard from "../components/db-components/UserDashboard";
 import { Link } from "react-router-dom";
 
 function Dashboard() {
+  //
   const [display, setDisplay] = useState({
     dashboard: true,
     sendStream: false,
     allStreams: false,
   });
 
+  useEffect(() => {
+    const textContainer = document.querySelector(".animated-text");
+    const letters = textContainer.querySelectorAll("span");
+
+    letters.forEach((letter, index) => {
+      letter.style.animationDelay = `${index * 70}ms`;
+    });
+  });
   return (
     <div className="dashboard">
       <div className="left">
         <Link to="/">
-          <h1>
+          <div className="db-logo">
             {" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -43,8 +52,18 @@ function Dashboard() {
                 </g>
               </g>
             </svg>
-            <span>Streamify</span>
-          </h1>
+            <div className="animated-text">
+              <span>S</span>
+              <span>t</span>
+              <span>r</span>
+              <span>e</span>
+              <span>a</span>
+              <span>m</span>
+              <span>i</span>
+              <span>f</span>
+              <span>y</span>
+            </div>
+          </div>
         </Link>
         <ul>
           <li

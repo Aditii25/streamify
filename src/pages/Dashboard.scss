@@ -15,7 +15,7 @@
     a {
       text-decoration: none;
     }
-    h1 {
+    .db-logo {
       color: #fff;
       font-weight: 700;
       font-size: 1.5rem;
@@ -23,7 +23,29 @@
       justify-content: center;
       align-items: center;
       gap: 10px;
+      svg {
+        transition: all 0.5s ease-in-out;
+      }
+      .animated-text {
+        display: inline-block;
+        position: relative;
+
+        span {
+          position: relative;
+          display: inline-block;
+          // transition: ani 0.3s;
+        }
+      }
+      &:hover {
+        svg {
+          transform: rotate(90deg);
+        }
+        .animated-text span {
+          animation: ani 0.4s linear;
+        }
+      }
     }
+
     ul {
       padding-top: 30px;
       list-style: none;
