@@ -133,16 +133,25 @@
       }
     }
     .add-update-svg {
-      width: max-content;
+      cursor: pointer;
+      width: auto;
       margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
       svg {
-        cursor: pointer;
         width: 35px;
         height: 35px;
         fill: #7d33f6;
         transition: all 0.2s ease-in-out;
-        &:hover {
+      }
+      &:hover {
+        svg {
           transform: rotate(90deg);
+          background-color: #f4f5f6;
+          padding: 4px;
+          border-radius: 5px;
         }
       }
     }
