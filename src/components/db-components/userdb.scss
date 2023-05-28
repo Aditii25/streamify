@@ -107,7 +107,7 @@
           th {
             padding: 10px 0px;
             vertical-align: inherit;
-            border-bottom: 1px solid rgb(224, 224, 224);
+            border-bottom: 1px solid #e0e0e0;
             text-align: left;
             font-size: 0.875rem;
             font-weight: 400;
@@ -135,8 +135,25 @@
             line-height: 1.429;
             font-family: Walsheim, Arial;
             color: rgba(18, 20, 30, 0.87);
-            padding: 10px 32px;
+            padding: 5px 32px;
             min-height: 0px;
+
+            .date-main {
+              display: flex;
+              flex-direction: column;
+              .date {
+                text-align: left;
+                color: rgba(18, 20, 30, 0.87);
+                font-size: 0.875rem;
+                font-weight: 400;
+                letter-spacing: 0.17px;
+                line-height: 1.429;
+                font-family: Walsheim, Arial;
+                padding: 0;
+                // padding: 8px 32px 8px 8px;
+                cursor: pointer;
+              }
+            }
           }
           span {
             font-weight: 600;

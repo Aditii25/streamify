@@ -2,6 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Home.scss";
 import bg1 from "../assets/bg.png";
+import heroImg from "../assets/streamify_dashboard_ss.webp";
+import img2 from "../assets/streamify_flowrate_ss.webp";
+import img3 from "../assets/streamify_multipletoken_ss.webp";
+import img4 from "../assets/streamify_sedate_ss.webp";
+import img5 from "../assets/streamify_updates_ss.webp";
 import laptop from "../assets/laptop.png";
 import gelato from "../assets/gelato-logo.png";
 import superfluid from "../assets/superfluid-logo.png";
@@ -159,11 +164,11 @@ function Home() {
             </button>
           </div>
         </div>
-        <div className="hero-right animate__animated animate__fadeIn animate__slow">
+        <div className="hero-right animate__animated animate__slideInUp animate__slow">
           <div className="hero-right-inside">
             <div className="img" id="tilt">
               <img className="hero-right-bg1" src={laptop} alt="background" />
-              <img className="laptop-screen" src={bg1} alt="background" />
+              <img className="laptop-screen" src={heroImg} alt="background" />
             </div>
             <svg
               viewBox="0 0 100 100"
@@ -207,7 +212,7 @@ function Home() {
           </div>
           <div className="one">
             <div className="right">
-              <img src={bg1} alt="testing" />
+              <img src={img2} alt="testing" />
             </div>
             <div className="left">
               <span>Customizable Flow Rates</span>
@@ -229,12 +234,12 @@ function Home() {
               </p>
             </div>
             <div className="right">
-              <img src={bg1} alt="testing" />
+              <img src={img3} alt="testing" />
             </div>
           </div>
           <div className="one">
             <div className="right">
-              <img src={bg1} alt="testing" />
+              <img src={img4} alt="testing" />
             </div>
             <div className="left">
               <span>Start and End Dates</span>
@@ -259,7 +264,7 @@ function Home() {
               </p>
             </div>
             <div className="right">
-              <img src={bg1} alt="testing" />
+              <img src={img5} alt="testing" />
             </div>
           </div>
         </div>

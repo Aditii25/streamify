@@ -6,10 +6,12 @@ import { FormControl, MenuItem, Select } from "@mui/material";
 
 import { Framework } from "@superfluid-finance/sdk-core";
 import { ethers } from "ethers";
+import { getContractInstance } from "../ContractInstance";
 
 function UserDashboard() {
   const [filter, setfilter] = useState("all");
   const [token, setToken] = useState("fDAIx");
+  const [transactions, setTransactions] = useState([]);
   const [balance, setBalance] = useState(0);
   const { address } = useAccount();
   const { openConnectModal } = useConnectModal();
@@ -20,6 +22,7 @@ function UserDashboard() {
   const handleTokenChange = (e) => {
     setToken(e.target.value);
   };
+
   useEffect(() => {
     const getBalance = async () => {
       setBalance("fetching...");
@@ -46,8 +49,19 @@ function UserDashboard() {
         console.log(err);
       }
     };
+    const getStreams = async () => {
+      try {
+        const contract = await getContractInstance();
+        const data = await contract.getAllUserStreams(address);
+        console.log(data);
+        setTransactions(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
     if (address) {
       getBalance();
+      getStreams();
     }
   }, [address, token]);
 
@@ -117,8 +131,8 @@ function UserDashboard() {
             </div>
             <div className="grid-item">
               <div className="grid-item-left">
-                <span className="title">12389</span>
-                <span className="info">Total Scheduled</span>
+                <span className="title">{transactions?.length}</span>
+                <span className="info">Total Streams</span>
               </div>
               <div className="grid-item-right">
                 <svg
@@ -136,13 +150,13 @@ function UserDashboard() {
 
             <div className="grid-item">
               <div className="grid-item-left">
-                <span className="title">12389</span>
+                <span className="title">-</span>
                 <span className="info">Flow Rate</span>
               </div>
               <div className="grid-item-right">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  enable-background="new 0 0 24 24"
+                  enableBackground="new 0 0 24 24"
                   height="36px"
                   viewBox="0 0 24 24"
                   width="36px"
@@ -159,13 +173,13 @@ function UserDashboard() {
             </div>
             <div className="grid-item">
               <div className="grid-item-left">
-                <span className="title">Polygon</span>
+                <span className="title">Polygon Testnet</span>
                 <span className="info">Network</span>
               </div>
               <div className="grid-item-right">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  enable-background="new 0 0 20 20"
+                  enableBackground="new 0 0 20 20"
                   height="36px"
                   viewBox="0 0 20 20"
                   width="36px"
@@ -192,10 +206,15 @@ function UserDashboard() {
                   sx={{
                     color: "#fff",
                     fontSize: "0.865rem",
-                    padding: "0px 5px",
+                    padding: "0px",
+                    margin: "0px 10px",
+                    width: "120px",
+                    minWidth: "fit-content",
+
                     ".css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select":
                       {
                         minHeight: "auto",
+                        padding: "5px 10px",
                       },
                     ".MuiOutlinedInput-notchedOutline": {
                       borderColor: "#fff",
@@ -230,41 +249,62 @@ function UserDashboard() {
                   <th>From / To</th>
                   <th>All Time Flow</th>
                   <th>Flow Rate</th>
-                  <th>Start / End Date</th>
+                  <th>Start Date / End Date</th>
                   <th>Status</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>0x3423...12312</td>
-                  <td>2376</td>
-                  <td>0.005</td>
-                  <td></td>
-                  <td>
-                    {/* use "completed" className for completed streams */}
-                    <span className="completed">completed</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>0x3423...12312</td>
-                  <td>2376</td>
-                  <td>0.005</td>
-                  <td></td>
-                  <td>
-                    {/* use "scheduled" className for completed streams */}
-                    <span className="scheduled">Scheduled</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>0x3423...12312</td>
-                  <td>2376</td>
-                  <td>0.005</td>
-                  <td></td>
-                  <td>
-                    {/* use "active" className for completed streams */}
-                    <span className="active">Active</span>
-                  </td>
-                </tr>
+                {transactions.length > 0 ? (
+                  transactions.map((item, key) => {
+                    return (
+                      <tr key={key}>
+                        <td>
+                          {item[1].slice(0, 6) +
+                            "..." +
+                            item[1].slice(item[1].length - 4, item[1].length)}
+                        </td>
+                        <td>-</td>
+                        <td>
+                          {item[2] ===
+                          "0x5D8B4C2554aeB7e86F387B4d6c00Ac33499Ed01f"
+                            ? `${parseFloat(
+                                item[6] / Math.pow(10, 18)
+                              )} fDAIx / sec`
+                            : ""}
+                        </td>
+                        <td>
+                          <span className="date-main">
+                            <span className="date">
+                              {new Date(item[3] * 1000).toLocaleString()}
+                            </span>
+                            <span className="date">
+                              {new Date(item[4] * 1000).toLocaleString()}
+                            </span>
+                          </span>
+                        </td>
+                        <td>
+                          {/* use "completed" className for completed streams */}
+                          {/* use "scheduled" className for completed streams */}
+                          {/* use "active" className for completed streams */}
+
+                          <span className="scheduled">scheduled</span>
+                        </td>
+                      </tr>
+                    );
+                  })
+                ) : (
+                  <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>
+                      {/* use "completed" className for completed streams */}
+                      {/* use "scheduled" className for completed streams */}
+                      {/* use "active" className for completed streams */}
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
@@ -283,10 +323,14 @@ function UserDashboard() {
                   sx={{
                     color: "#fff",
                     fontSize: "0.865rem",
-                    padding: "0px 5px",
+                    padding: "0px",
+                    margin: "0px 10px",
+                    width: "120px",
+                    minWidth: "fit-content",
                     ".css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select":
                       {
                         minHeight: "auto",
+                        padding: "5px 10px",
                       },
                     ".MuiOutlinedInput-notchedOutline": {
                       borderColor: "#fff",
