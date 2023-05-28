@@ -21,17 +21,31 @@ import { useConnectModal } from "@rainbow-me/rainbowkit";
 function SendStream() {
   const { address } = useAccount();
   const { openConnectModal } = useConnectModal();
-  const [personName, setPersonName] = useState("fDAIx");
+  const [token, setToken] = useState("fDAIx");
   const [checked, setChecked] = React.useState(false);
+
+  const [sendStreamData, setSendStreamData] = useState({
+    receiverAddress: "",
+    token: token,
+    flowRate: "",
+    isScheduled: checked,
+    startDate: "",
+    endDate: "",
+    isAddedUpdate: "",
+    updateDates: [],
+    updateFlowRates: [],
+  });
 
   const handleChangeSwitch = (event) => {
     setChecked(event.target.checked);
+    setSendStreamData({ ...sendStreamData, isScheduled: event.target.checked });
     if (!event.target.checked) {
       setInputs([]);
     }
   };
-  const handleChange = (event) => {
-    setPersonName(event.target.value);
+  const handleChangeToken = (event) => {
+    setToken(event.target.value);
+    setSendStreamData({ ...sendStreamData, token: event.target.value });
   };
   const inputStyle = {
     "& label.Mui-focused": {
@@ -92,6 +106,10 @@ function SendStream() {
     setInputs(newInputs);
   };
 
+  useEffect(() => {
+    console.log(sendStreamData);
+  }, [sendStreamData]);
+
   if (address)
     return (
       <div className="send-stream-main">
@@ -108,6 +126,12 @@ function SendStream() {
               variant="outlined"
               placeholder="Public Address"
               sx={inputStyle}
+              onChange={(e) =>
+                setSendStreamData({
+                  ...sendStreamData,
+                  receiverAddress: e.target.value,
+                })
+              }
             />
           </div>
           <div className="token-flow">
@@ -117,9 +141,9 @@ function SendStream() {
                 <Select
                   displayEmpty
                   id="demo-simple-select"
-                  defaultValue={personName}
-                  value={personName}
-                  onChange={handleChange}
+                  defaultValue={token}
+                  value={token}
+                  onChange={handleChangeToken}
                   sx={{
                     color: "rgba(18, 20, 30, 0.87)",
                     fontSize: "1rem",
@@ -150,6 +174,8 @@ function SendStream() {
                     <h4 className="index-placeholder">Select Token</h4>
                   </MenuItem>
                   <MenuItem value={"fDAIx"}>fDAIx</MenuItem>
+                  <MenuItem value={"fUSDCx"}>fUSDCx</MenuItem>
+                  <MenuItem value={"MATICx"}>MATICx</MenuItem>
                 </Select>
               </FormControl>
             </div>
@@ -166,6 +192,12 @@ function SendStream() {
                 variant="outlined"
                 placeholder="0.0"
                 sx={inputStyle}
+                onChange={(e) =>
+                  setSendStreamData({
+                    ...sendStreamData,
+                    flowRate: e.target.value,
+                  })
+                }
               />
             </div>
           </div>
@@ -214,6 +246,17 @@ function SendStream() {
                           ".MuiSvgIcon-root ": {
                             fill: "black",
                           },
+                        }}
+                        value={
+                          sendStreamData.startDate
+                            ? sendStreamData.startDate
+                            : null
+                        }
+                        onChange={(newValue) => {
+                          setSendStreamData({
+                            ...sendStreamData,
+                            startDate: newValue,
+                          });
                         }}
                       />
                     </DemoContainer>

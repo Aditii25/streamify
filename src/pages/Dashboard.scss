@@ -154,6 +154,13 @@
       height: 80px;
       z-index: 10000;
       position: relative;
+
+      h3 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        -webkit-text-stroke: 1px #7d33f6;
+        color: transparent;
+      }
     }
     .sub-section {
       border-radius: 10px;

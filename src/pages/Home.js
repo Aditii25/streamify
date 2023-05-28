@@ -246,6 +246,22 @@ function Home() {
               </p>
             </div>
           </div>
+          <div className="one">
+            <div className="left">
+              <span>Flexible Stream Updates</span>
+              <p>
+                With Streamify, you have the freedom to update your Superfluid
+                streams whenever and however you want. Modify flow rates, adjust
+                start and end dates, and change receivers effortlessly.
+                Leveraging Gelato's gasless transaction feature, Streamify saves
+                you valuable gas fees, providing a seamless and cost-effective
+                solution for managing your automated payment streams with ease.
+              </p>
+            </div>
+            <div className="right">
+              <img src={bg1} alt="testing" />
+            </div>
+          </div>
         </div>
       </div>
       <div className="third-section">
