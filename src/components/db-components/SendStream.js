@@ -182,28 +182,46 @@ function SendStream() {
         for (let i = 0; i < arr.length; i++) {
           let epoch = arr[i].input1.$d.getTime() / 1000;
           let flowrate = ethers.utils.parseEther(arr[i].input2);
-          console.log(epoch);
+          // console.log(epoch);
           updatedDates.push(epoch);
           updatedFlowRates.push(parseInt(flowrate));
         }
-        console.log(updatedDates, updatedFlowRates);
-        let startingFlowRate = ethers.utils.parseEther(sendStreamData.flowRate);
+        // console.log(updatedDates, updatedFlowRates);
+        let startingFlowRate = ethers.utils.parseUnits(
+          sendStreamData.flowRate,
+          "ether"
+        );
+        console.log([
+          address, // connected address user's
+          sendStreamData.receiverAddress, // receiver's address
+          daix.address, // Token address
+          sDate, // start time
+          eDate, // end time
+          parseInt(startingFlowRate), // start flow rate
+          parseInt(startingFlowRate), // start flow rate
+          updatedDates, // [update time1, update time 2]
+          updatedFlowRates, // [update flow rate 1, update flow rate 2]
+          [false, false],
+          false,
+          false,
+          false,
+          sendStreamData.isScheduled, // if scheduled
+        ]);
         const tx = await contract.scheduleStream([
-          [
-            address, // connected address user's
-            sendStreamData.receiverAddress, // receiver's address
-            daix.address, // Token address
-            sDate, // start time
-            eDate, // end time
-            startingFlowRate, // start flow rate
-            startingFlowRate, // start flow rate
-            updatedDates, // [update time1, update time 2]
-            updatedFlowRates, // [update flow rate 1, update flow rate 2]
-            [false, false], //
-            false, // false by default
-            arr.length > 0 ? false : true, // if update details are not provided set it as true
-            false, // false by default
-          ],
+          address, // connected address user's
+          sendStreamData.receiverAddress, // receiver's address
+          daix.address, // Token address
+          sDate, // start time
+          eDate, // end time
+          parseInt(startingFlowRate), // start flow rate
+          parseInt(startingFlowRate), // start flow rate
+          updatedDates, // [update time1, update time 2]
+          updatedFlowRates, // [update flow rate 1, update flow rate 2]
+          [false, false],
+          false,
+          false,
+          false,
+          sendStreamData.isScheduled, // if scheduled
         ]);
         const receipt = await tx.wait();
         console.log(receipt);

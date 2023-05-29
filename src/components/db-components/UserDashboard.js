@@ -63,6 +63,8 @@ function UserDashboard() {
       getBalance();
       getStreams();
     }
+
+    console.log(Date.now());
   }, [address, token]);
 
   if (address)
@@ -286,8 +288,23 @@ function UserDashboard() {
                           {/* use "completed" className for completed streams */}
                           {/* use "scheduled" className for completed streams */}
                           {/* use "active" className for completed streams */}
+                          {parseInt(item[3]) * 1000 < Date.now() &&
+                          parseInt(item[4]) * 1000 > Date.now() ? (
+                            <span className="active">Active</span>
+                          ) : (
+                            ""
+                          )}
+                          {parseInt(item[4]) * 1000 < Date.now() ? (
+                            <span className="completed">Completed</span>
+                          ) : (
+                            ""
+                          )}
 
-                          <span className="scheduled">scheduled</span>
+                          {parseInt(item[3]) * 1000 > Date.now() ? (
+                            <span className="scheduled">Scheduled</span>
+                          ) : (
+                            ""
+                          )}
                         </td>
                       </tr>
                     );
@@ -309,8 +326,7 @@ function UserDashboard() {
             </table>
           </div>
         </div>
-        <div className="recent-trans-main">
-          {/********** header and filter********/}
+        {/* <div className="recent-trans-main">
           <div className="header-rt">
             <h3>Gelato Automation Events</h3>
             <div className="filter-transaction">
@@ -376,7 +392,7 @@ function UserDashboard() {
                   <td>0.005</td>
                   <td></td>
                   <td>
-                    {/* use "completed" className for completed streams */}
+                    
                     <span className="completed">completed</span>
                   </td>
                 </tr>
@@ -386,7 +402,7 @@ function UserDashboard() {
                   <td>0.005</td>
                   <td></td>
                   <td>
-                    {/* use "scheduled" className for completed streams */}
+                    
                     <span className="scheduled">Scheduled</span>
                   </td>
                 </tr>
@@ -396,14 +412,14 @@ function UserDashboard() {
                   <td>0.005</td>
                   <td></td>
                   <td>
-                    {/* use "active" className for completed streams */}
+                    
                     <span className="active">Active</span>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   else
