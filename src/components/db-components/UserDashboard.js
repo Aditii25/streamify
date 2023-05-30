@@ -8,7 +8,7 @@ import { Framework } from "@superfluid-finance/sdk-core";
 import { ethers } from "ethers";
 import { getContractInstance } from "../ContractInstance";
 
-function UserDashboard() {
+function UserDashboard(props) {
   const [filter, setfilter] = useState("all");
   const [token, setToken] = useState("fDAIx");
   const [transactions, setTransactions] = useState([]);
@@ -260,7 +260,7 @@ function UserDashboard() {
               <tbody>
                 {transactions.length > 0 ? (
                   transactions.map((item, key) => {
-                    if (key < 2)
+                    if (key < 4)
                       return (
                         <tr key={key}>
                           <td>
@@ -327,9 +327,19 @@ function UserDashboard() {
                 )}
               </tbody>
             </table>
-            {transactions.length > 2 ? (
+            {transactions.length > 4 ? (
               <div className="view-more">
-                <button>View More</button>
+                <button
+                  onClick={() =>
+                    props.setDisplay({
+                      dashboard: false,
+                      sendStream: false,
+                      allStreams: true,
+                    })
+                  }
+                >
+                  View More
+                </button>
               </div>
             ) : (
               ""

@@ -179,7 +179,7 @@ function Dashboard() {
           ) : display.allStreams ? (
             <AllStreams />
           ) : (
-            <UserDashboard />
+            <UserDashboard setDisplay={setDisplay} />
           )}
         </div>
       </div>

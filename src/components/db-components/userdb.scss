@@ -359,6 +359,7 @@
       }
     }
   }
+
   .sender-receiver {
     width: 70%;
     max-width: 650px;
@@ -395,6 +396,8 @@
 
       .sender,
       .receiver {
+        position: relative;
+        z-index: 5;
         width: 40%;
         display: flex;
         justify-content: center;
@@ -412,8 +415,20 @@
       }
 
       .status-img {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
         margin: 10px -10px;
         width: 60px;
+        svg {
+          padding: 2px;
+          border-radius: 5px;
+          background-color: #7d33f6;
+          fill: #ffffff;
+        }
       }
       svg.blockies {
         width: 30px;
@@ -563,7 +578,20 @@
     transform: translateX(-50%) scale(1);
   }
 }
+.timeline-main {
+  background-color: #ffffff;
+  margin: 1.5rem;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
 
+  h1 {
+    text-align: center;
+    margin: 20px 0;
+    padding: 0;
+    color: #7d33f6;
+  }
+}
 .cd-container {
   /* this class is used to give a max-width to the element it is applied to, and center it horizontally when it reaches that max-width */
   width: 90%;
@@ -645,6 +673,7 @@ header h1 {
   padding: 2em 0;
   margin-top: 2em;
   margin-bottom: 2em;
+  background-color: #ffffff;
 }
 #cd-timeline::before {
   /* this is the vertical line */
@@ -713,7 +742,7 @@ header h1 {
   top: 50%;
   margin-left: -12px;
   margin-top: -12px;
-  fill: #7d33f6;
+  fill: #ffffff;
 }
 .cd-timeline-img.cd-picture {
   background: #75ce66;
@@ -805,7 +834,8 @@ header h1 {
 .cd-timeline-content {
   position: relative;
   margin-left: 60px;
-  background: white;
+  background: #7d33f6;
+  color: #ffffff;
   border-radius: 0.25em;
   padding: 1em;
   box-shadow: 0 3px 0 #d7e4ed;
@@ -816,7 +846,7 @@ header h1 {
   clear: both;
 }
 .cd-timeline-content h2 {
-  color: #303e49;
+  color: #ffffff;
 }
 .cd-timeline-content p,
 .cd-timeline-content .cd-read-more,
@@ -845,7 +875,9 @@ header h1 {
 .cd-timeline-content .cd-date {
   float: left;
   padding: 0.8em 0;
-  opacity: 0.7;
+  opacity: 1;
+  color: #7d33f6;
+  font-weight: 600;
 }
 .cd-timeline-content::before {
   content: "";
@@ -855,7 +887,7 @@ header h1 {
   height: 0;
   width: 0;
   border: 7px solid transparent;
-  border-right: 7px solid white;
+  border-right: 7px solid #7d33f6;
 }
 @media only screen and (min-width: 768px) {
   .cd-timeline-content h2 {
@@ -882,7 +914,7 @@ header h1 {
     top: 24px;
     left: 100%;
     border-color: transparent;
-    border-left-color: white;
+    border-left-color: #7d33f6;
   }
   .cd-timeline-content .cd-read-more {
     float: left;
@@ -903,7 +935,7 @@ header h1 {
     left: auto;
     right: 100%;
     border-color: transparent;
-    border-right-color: white;
+    border-right-color: #7d33f6;
   }
   .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-read-more {
     float: right;
