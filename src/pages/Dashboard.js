@@ -116,7 +116,7 @@ function Dashboard() {
                 </g>
               </g>
             </svg>
-            <span>Send Stream</span>
+            <span>Schedule Stream</span>
           </li>
           <li
             onClick={() =>
@@ -150,7 +150,7 @@ function Dashboard() {
             {display.dashboard
               ? "Dashboard"
               : display.sendStream
-              ? "Send / Schedule Stream"
+              ? "Schedule Stream"
               : "All Streams"}
           </h3>
           <ConnectButton />

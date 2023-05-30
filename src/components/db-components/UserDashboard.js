@@ -133,7 +133,9 @@ function UserDashboard() {
             </div>
             <div className="grid-item">
               <div className="grid-item-left">
-                <span className="title">{transactions?.length}</span>
+                <span className="title">
+                  {transactions?.length ? transactions?.length : 0}
+                </span>
                 <span className="info">Total Streams</span>
               </div>
               <div className="grid-item-right">
@@ -309,15 +311,6 @@ function UserDashboard() {
                           </td>
                         </tr>
                       );
-                    else
-                      return (
-                        <tr key={key}>
-                          <td colSpan="4" className="view-more" align="center">
-                            Hello
-                            {/* <button className="more-streams">View More</button> */}
-                          </td>
-                        </tr>
-                      );
                   })
                 ) : (
                   <tr>
@@ -334,6 +327,13 @@ function UserDashboard() {
                 )}
               </tbody>
             </table>
+            {transactions.length > 2 ? (
+              <div className="view-more">
+                <button>View More</button>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
         {/* <div className="recent-trans-main">

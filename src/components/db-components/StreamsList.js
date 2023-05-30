@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FormControl, MenuItem, Select } from "@mui/material";
+import BlockiesSvg from "blockies-react-svg";
 
 function StreamsList(props) {
   const [filter, setFilter] = useState("all");
@@ -13,7 +14,7 @@ function StreamsList(props) {
       <div className="all-trans-main">
         {/********** header and filter********/}
         <div className="header-all-trans">
-          <h3>All props.transactions</h3>
+          <h3>All Transactions</h3>
           <div className="filter-transaction">
             {/* <FormControl required fullWidth>
               <Select
@@ -59,7 +60,7 @@ function StreamsList(props) {
           <table>
             <thead>
               <tr>
-                <th>From / To</th>
+                <th>To</th>
                 <th>All Time Flow</th>
                 <th>Flow Rate</th>
                 <th>Start Date / End Date</th>
@@ -70,11 +71,25 @@ function StreamsList(props) {
               {props.transactions.length > 0 ? (
                 props.transactions.map((item, key) => {
                   return (
-                    <tr key={key}>
+                    <tr
+                      key={key}
+                      onClick={() =>
+                        props.setShowList({ show: false, index: key })
+                      }
+                    >
                       <td>
-                        {item[1].slice(0, 6) +
-                          "..." +
-                          item[1].slice(item[1].length - 4, item[1].length)}
+                        <div className="reciever-address">
+                          <BlockiesSvg
+                            address={item[1]}
+                            size={8}
+                            scale={30}
+                            //caseSensitive={false}
+                            className="blockies"
+                          />
+                          {item[1].slice(0, 6) +
+                            "..." +
+                            item[1].slice(item[1].length - 4, item[1].length)}
+                        </div>
                       </td>
                       <td>-</td>
                       <td>

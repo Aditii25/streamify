@@ -10,7 +10,7 @@ function AllStreams() {
   const { address } = useAccount();
   const { openConnectModal } = useConnectModal();
   const [transactions, setTransactions] = useState([]);
-  const [showList, setShowList] = useState(true);
+  const [showList, setShowList] = useState({ show: true, index: "" });
 
   useEffect(() => {
     const getStreams = async () => {
@@ -31,10 +31,14 @@ function AllStreams() {
   if (address)
     return (
       <>
-        {showList ? (
+        {showList.show ? (
           <StreamsList setShowList={setShowList} transactions={transactions} />
         ) : (
-          <SingleStreamData setShowList={setShowList} />
+          <SingleStreamData
+            showList={showList}
+            setShowList={setShowList}
+            transactions={transactions}
+          />
         )}
       </>
     );
