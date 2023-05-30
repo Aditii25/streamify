@@ -4,17 +4,35 @@ import { useAccount } from "wagmi";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import StreamsList from "./StreamsList";
 import SingleStreamData from "./SingleStreamData";
+import { getContractInstance } from "../ContractInstance";
 
 function AllStreams() {
   const { address } = useAccount();
   const { openConnectModal } = useConnectModal();
+  const [transactions, setTransactions] = useState([]);
   const [showList, setShowList] = useState(true);
+
+  useEffect(() => {
+    const getStreams = async () => {
+      try {
+        const contract = await getContractInstance();
+        const data = await contract.getAllUserStreams(address);
+        console.log(data);
+        setTransactions(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    if (address) {
+      getStreams();
+    }
+  }, []);
 
   if (address)
     return (
       <>
         {showList ? (
-          <StreamsList setShowList={setShowList} />
+          <StreamsList setShowList={setShowList} transactions={transactions} />
         ) : (
           <SingleStreamData setShowList={setShowList} />
         )}

@@ -64,7 +64,7 @@ function UserDashboard() {
       getStreams();
     }
 
-    console.log(Date.now());
+    // console.log(Date.now());
   }, [address, token]);
 
   if (address)
@@ -150,7 +150,7 @@ function UserDashboard() {
               </div>
             </div>
 
-            <div className="grid-item">
+            {/* <div className="grid-item">
               <div className="grid-item-left">
                 <span className="title">-</span>
                 <span className="info">Flow Rate</span>
@@ -172,7 +172,7 @@ function UserDashboard() {
                   </g>
                 </svg>
               </div>
-            </div>
+            </div> */}
             <div className="grid-item">
               <div className="grid-item-left">
                 <span className="title">Polygon Testnet</span>
@@ -199,7 +199,7 @@ function UserDashboard() {
           <div className="header-rt">
             <h3>Recent Transactions</h3>
             <div className="filter-transaction">
-              <FormControl required fullWidth>
+              {/* <FormControl required fullWidth>
                 <Select
                   id="demo-simple-select"
                   defaultValue={filter}
@@ -241,7 +241,7 @@ function UserDashboard() {
                   <MenuItem value={"scheduled"}>Scheduled</MenuItem>
                   <MenuItem value={"completed"}>Completed</MenuItem>
                 </Select>
-              </FormControl>
+              </FormControl> */}
             </div>
           </div>
           <div className="table">
@@ -258,56 +258,66 @@ function UserDashboard() {
               <tbody>
                 {transactions.length > 0 ? (
                   transactions.map((item, key) => {
-                    return (
-                      <tr key={key}>
-                        <td>
-                          {item[1].slice(0, 6) +
-                            "..." +
-                            item[1].slice(item[1].length - 4, item[1].length)}
-                        </td>
-                        <td>-</td>
-                        <td>
-                          {item[2] ===
-                          "0x5D8B4C2554aeB7e86F387B4d6c00Ac33499Ed01f"
-                            ? `${parseFloat(
-                                item[6] / Math.pow(10, 18)
-                              )} fDAIx / sec`
-                            : ""}
-                        </td>
-                        <td>
-                          <span className="date-main">
-                            <span className="date">
-                              {new Date(item[3] * 1000).toLocaleString()}
+                    if (key < 2)
+                      return (
+                        <tr key={key}>
+                          <td>
+                            {item[1].slice(0, 6) +
+                              "..." +
+                              item[1].slice(item[1].length - 4, item[1].length)}
+                          </td>
+                          <td>-</td>
+                          <td>
+                            {item[2] ===
+                            "0x5D8B4C2554aeB7e86F387B4d6c00Ac33499Ed01f"
+                              ? `${parseFloat(
+                                  item[6] / Math.pow(10, 18)
+                                )} fDAIx / sec`
+                              : ""}
+                          </td>
+                          <td>
+                            <span className="date-main">
+                              <span className="date">
+                                {new Date(item[3] * 1000).toLocaleString()}
+                              </span>
+                              <span className="date">
+                                {new Date(item[4] * 1000).toLocaleString()}
+                              </span>
                             </span>
-                            <span className="date">
-                              {new Date(item[4] * 1000).toLocaleString()}
-                            </span>
-                          </span>
-                        </td>
-                        <td>
-                          {/* use "completed" className for completed streams */}
-                          {/* use "scheduled" className for completed streams */}
-                          {/* use "active" className for completed streams */}
-                          {parseInt(item[3]) * 1000 < Date.now() &&
-                          parseInt(item[4]) * 1000 > Date.now() ? (
-                            <span className="active">Active</span>
-                          ) : (
-                            ""
-                          )}
-                          {parseInt(item[4]) * 1000 < Date.now() ? (
-                            <span className="completed">Completed</span>
-                          ) : (
-                            ""
-                          )}
+                          </td>
+                          <td>
+                            {/* use "completed" className for completed streams */}
+                            {/* use "scheduled" className for completed streams */}
+                            {/* use "active" className for completed streams */}
+                            {parseInt(item[3]) * 1000 < Date.now() &&
+                            parseInt(item[4]) * 1000 > Date.now() ? (
+                              <span className="active">Active</span>
+                            ) : (
+                              ""
+                            )}
+                            {parseInt(item[4]) * 1000 < Date.now() ? (
+                              <span className="completed">Completed</span>
+                            ) : (
+                              ""
+                            )}
 
-                          {parseInt(item[3]) * 1000 > Date.now() ? (
-                            <span className="scheduled">Scheduled</span>
-                          ) : (
-                            ""
-                          )}
-                        </td>
-                      </tr>
-                    );
+                            {parseInt(item[3]) * 1000 > Date.now() ? (
+                              <span className="scheduled">Scheduled</span>
+                            ) : (
+                              ""
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    else
+                      return (
+                        <tr key={key}>
+                          <td colSpan="4" className="view-more" align="center">
+                            Hello
+                            {/* <button className="more-streams">View More</button> */}
+                          </td>
+                        </tr>
+                      );
                   })
                 ) : (
                   <tr>

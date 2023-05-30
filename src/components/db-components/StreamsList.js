@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FormControl, MenuItem, Select } from "@mui/material";
 
 function StreamsList(props) {
@@ -7,14 +7,15 @@ function StreamsList(props) {
   const handleChange = (event) => {
     setFilter(event.target.value);
   };
+
   return (
     <div className="user-db-main">
       <div className="all-trans-main">
         {/********** header and filter********/}
         <div className="header-all-trans">
-          <h3>All Transactions</h3>
+          <h3>All props.transactions</h3>
           <div className="filter-transaction">
-            <FormControl required fullWidth>
+            {/* <FormControl required fullWidth>
               <Select
                 id="demo-simple-select"
                 defaultValue={filter}
@@ -51,7 +52,7 @@ function StreamsList(props) {
                 <MenuItem value={"scheduled"}>Scheduled</MenuItem>
                 <MenuItem value={"completed"}>Completed</MenuItem>
               </Select>
-            </FormControl>
+            </FormControl> */}
           </div>
         </div>
         <div className="table">
@@ -61,56 +62,77 @@ function StreamsList(props) {
                 <th>From / To</th>
                 <th>All Time Flow</th>
                 <th>Flow Rate</th>
-                <th>Start / End Date</th>
+                <th>Start Date / End Date</th>
                 <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              <tr onClick={() => props.setShowList(false)}>
-                <td>0x3423...12312</td>
-                <td>2376</td>
-                <td>0.005</td>
-                <td>
-                  <div className="date-main">
-                    <span className="date">something</span>
-                    <span className="date">something</span>
-                  </div>
-                </td>
-                <td>
-                  {/* use "completed" className for completed streams */}
-                  <span className="completed">completed</span>
-                </td>
-              </tr>
-              <tr>
-                <td>0x3423...12312</td>
-                <td>2376</td>
-                <td>0.005</td>
-                <td>
-                  <div className="date-main">
-                    <span className="date">something</span>
-                    <span className="date">something</span>
-                  </div>
-                </td>
-                <td>
-                  {/* use "scheduled" className for completed streams */}
-                  <span className="scheduled">Scheduled</span>
-                </td>
-              </tr>
-              <tr>
-                <td>0x3423...12312</td>
-                <td>2376</td>
-                <td>0.005</td>
-                <td>
-                  <div className="date-main">
-                    <span className="date">something</span>
-                    <span className="date">something</span>
-                  </div>
-                </td>
-                <td>
-                  {/* use "active" className for completed streams */}
-                  <span className="active">Active</span>
-                </td>
-              </tr>
+              {props.transactions.length > 0 ? (
+                props.transactions.map((item, key) => {
+                  return (
+                    <tr key={key}>
+                      <td>
+                        {item[1].slice(0, 6) +
+                          "..." +
+                          item[1].slice(item[1].length - 4, item[1].length)}
+                      </td>
+                      <td>-</td>
+                      <td>
+                        {item[2] ===
+                        "0x5D8B4C2554aeB7e86F387B4d6c00Ac33499Ed01f"
+                          ? `${parseFloat(
+                              item[6] / Math.pow(10, 18)
+                            )} fDAIx / sec`
+                          : ""}
+                      </td>
+                      <td>
+                        <span className="date-main">
+                          <span className="date">
+                            {new Date(item[3] * 1000).toLocaleString()}
+                          </span>
+                          <span className="date">
+                            {new Date(item[4] * 1000).toLocaleString()}
+                          </span>
+                        </span>
+                      </td>
+                      <td>
+                        {/* use "completed" className for completed streams */}
+                        {/* use "scheduled" className for completed streams */}
+                        {/* use "active" className for completed streams */}
+                        {parseInt(item[3]) * 1000 < Date.now() &&
+                        parseInt(item[4]) * 1000 > Date.now() ? (
+                          <span className="active">Active</span>
+                        ) : (
+                          ""
+                        )}
+                        {parseInt(item[4]) * 1000 < Date.now() ? (
+                          <span className="completed">Completed</span>
+                        ) : (
+                          ""
+                        )}
+
+                        {parseInt(item[3]) * 1000 > Date.now() ? (
+                          <span className="scheduled">Scheduled</span>
+                        ) : (
+                          ""
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>
+                    {/* use "completed" className for completed streams */}
+                    {/* use "scheduled" className for completed streams */}
+                    {/* use "active" className for completed streams */}
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

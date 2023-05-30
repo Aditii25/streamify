@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Home.scss";
 import bg1 from "../assets/bg.png";
+import bg5 from "../assets/bg5.webp";
 import heroImg from "../assets/streamify_dashboard_ss.webp";
 import img2 from "../assets/streamify_flowrate_ss.webp";
 import img3 from "../assets/streamify_multipletoken_ss.webp";
@@ -283,7 +284,7 @@ function Home() {
         <button>
           <Link to="/dashboard">Start stream now</Link>
         </button>
-        <img className="hero-right-bg1" src={bg1} alt="background" />
+        <img className="third-section-bg" src={bg5} alt="background" />
       </div>
       <div className="faqs-main" ref={faqsSection}>
         <h2>FAQs</h2>

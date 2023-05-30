@@ -179,18 +179,21 @@ function SendStream() {
         let arr = inputs;
         let updatedDates = [];
         let updatedFlowRates = [];
+        let updateBooleanArr = [];
         for (let i = 0; i < arr.length; i++) {
           let epoch = arr[i].input1.$d.getTime() / 1000;
           let flowrate = ethers.utils.parseEther(arr[i].input2);
           // console.log(epoch);
           updatedDates.push(epoch);
           updatedFlowRates.push(parseInt(flowrate));
+          updateBooleanArr.push(false);
         }
         // console.log(updatedDates, updatedFlowRates);
         let startingFlowRate = ethers.utils.parseUnits(
           sendStreamData.flowRate,
           "ether"
         );
+
         console.log([
           address, // connected address user's
           sendStreamData.receiverAddress, // receiver's address
@@ -201,12 +204,13 @@ function SendStream() {
           parseInt(startingFlowRate), // start flow rate
           updatedDates, // [update time1, update time 2]
           updatedFlowRates, // [update flow rate 1, update flow rate 2]
-          [false, false],
+          updateBooleanArr,
           false,
-          false,
+          updatedDates.length > 0 ? false : true, // if update added then false
           false,
           sendStreamData.isScheduled, // if scheduled
         ]);
+
         const tx = await contract.scheduleStream([
           address, // connected address user's
           sendStreamData.receiverAddress, // receiver's address
@@ -217,9 +221,9 @@ function SendStream() {
           parseInt(startingFlowRate), // start flow rate
           updatedDates, // [update time1, update time 2]
           updatedFlowRates, // [update flow rate 1, update flow rate 2]
-          [false, false],
+          updateBooleanArr,
           false,
-          false,
+          updatedDates.length > 0 ? false : true, // if update added then false
           false,
           sendStreamData.isScheduled, // if scheduled
         ]);
