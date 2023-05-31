@@ -177,7 +177,7 @@ function UserDashboard(props) {
             </div> */}
             <div className="grid-item">
               <div className="grid-item-left">
-                <span className="title">Polygon Testnet</span>
+                <span className="title">Polygon Mumbai</span>
                 <span className="info">Network</span>
               </div>
               <div className="grid-item-right">

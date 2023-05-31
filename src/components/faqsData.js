@@ -12,7 +12,7 @@ export const faqs = [
   {
     panel: "panel3",
     title: "Can I update a Superfluid stream after it has been created?",
-    info: "Yes, you can update a Superfluid stream by changing the flow rate, start and end dates, and receiver of the stream.",
+    info: "Yes, if stream is active or scheduled then you can update a Superfluid stream by changing the flow rate, start(if not started) and end dates.",
   },
   {
     panel: "panel4",
@@ -32,14 +32,13 @@ export const faqs = [
   },
   {
     panel: "panel7",
-    title:
-      "What happens if the receiver of a Superfluid stream does not claim the tokens?",
-    info: "If the receiver does not claim the tokens within the specified time frame, the tokens will be returned to the sender.",
+    title: "Can I use Superfluid streams for recurring payments?",
+    info: "Yes, Superfluid streams are an ideal solution for recurring payments, as they allow for continuous and adjustable token transfers over a specified period of time.",
   },
   {
     panel: "panel8",
-    title: "Can I use Superfluid streams for recurring payments?",
-    info: "Yes, Superfluid streams are an ideal solution for recurring payments, as they allow for continuous and adjustable token transfers over a specified period of time.",
+    title: "How does Gelato automation work with Streamify?",
+    info: "Gelato automation integrates seamlessly with Streamify to provide efficient and reliable automated payment processes. By utilizing Gelato's gasless transaction feature, Streamify reduces the need for users to pay gas fees when interacting with their Superfluid streams.",
   },
   // Add more FAQs as needed
 ];

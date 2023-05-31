@@ -357,6 +357,9 @@ function SingleStreamData(props) {
                 Automated token transfers will cease after this point, and the
                 stream will be considered completed.
               </p>
+              <p>
+                Flow Rate : <b>0.00</b>
+              </p>
               <span className="cd-date">
                 {new Date(singleTran[4] * 1000).toLocaleString()}
               </span>

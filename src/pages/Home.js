@@ -139,12 +139,14 @@ function Home() {
           <ul>
             <li onClick={() => handleNavClick(homeSection)}>Home</li>
             <li onClick={() => handleNavClick(featuresSection)}>Features</li>
-            <li>How It Works</li>
+            <li onClick={() => handleNavClick(howitworksSection)}>
+              How It Works
+            </li>
             <li onClick={() => handleNavClick(faqsSection)}>FAQ</li>
           </ul>
-          <button>
-            <Link to="/dashboard">Launch App</Link>
-          </button>
+          <Link to="/dashboard">
+            <button>Launch App</button>
+          </Link>
         </div>
       </nav>
       <div className="hero">
@@ -160,9 +162,10 @@ function Home() {
             to fit your needs.
           </p>
           <div className="hero-button">
-            <button>
-              <Link to="/dashboard">Start your stream</Link>
-            </button>
+            <Link to="/dashboard">
+              {" "}
+              <button>Start your stream</button>
+            </Link>
           </div>
         </div>
         <div className="hero-right animate__animated animate__slideInUp animate__slow">
@@ -208,7 +211,7 @@ function Home() {
               </p>
             </div>
             <div className="right">
-              <img src={bg1} alt="testing" />
+              <img src={heroImg} alt="testing" />
             </div>
           </div>
           <div className="one">
@@ -281,10 +284,58 @@ function Home() {
             financial journey today!
           </span>
         </div>
-        <button>
-          <Link to="/dashboard">Start stream now</Link>
-        </button>
+        <Link to="/dashboard">
+          <button>Start stream now</button>
+        </Link>
         <img className="third-section-bg" src={bg5} alt="background" />
+      </div>
+
+      <div className="how-it-works" ref={howitworksSection}>
+        <div className="heading">
+          <span> How it works?</span>
+        </div>
+        <ul class="process">
+          <li class="process__item">
+            <span class="process__number">1</span>
+            <span class="process__title">Create Stream</span>
+            <span class="process__subtitle">
+              Use the intuitive form to set up a new Superfluid stream. Specify
+              the receiver's address, desired flow rate, token selection, start
+              date, end date, and update date. Click "Create" to schedule the
+              stream.
+            </span>
+          </li>
+
+          <li class="process__item">
+            <span class="process__number">2</span>
+            <span class="process__title">Update Stream</span>
+            <span class="process__subtitle">
+              Modify your existing streams easily. Adjust the flow rate, start
+              or end dates. Flexibly adapt your payment schedules with a few
+              clicks.
+            </span>
+          </li>
+
+          <li class="process__item">
+            <span class="process__number">3</span>
+            <span class="process__title">Delete Stream</span>
+            <span class="process__subtitle">
+              Need to remove a stream? Simply select the stream from your
+              dashboard and click "Delete." The stream will be canceled, and the
+              automated payments will cease.
+            </span>
+          </li>
+
+          <li class="process__item">
+            <span class="process__number">4</span>
+            <span class="process__title">Timeline</span>
+            <span class="process__subtitle">
+              Easily track the progress of your streams with the interactive
+              timeline. Click on any stream in the dashboard to view the
+              timeline and understand the automated payment steps at a glance.
+            </span>
+          </li>
+        </ul>
       </div>
       <div className="faqs-main" ref={faqsSection}>
         <h2>FAQs</h2>

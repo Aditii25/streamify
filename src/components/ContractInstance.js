@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 import contractABI from "../contracts/artifacts/Trial.json";
 
 export const CONTARCT_ADDRESS_POLYGON_TESTNET =
-  "0x37A025d3660b2901669bE6c03174D465164cbE8d";
+  "0x0648894BECcAb2C70fc9cDCeb59f82E14FfD50e1";
 
 export const getContractInstance = async () => {
   try {
