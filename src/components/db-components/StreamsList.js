@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FormControl, MenuItem, Select } from "@mui/material";
+import "react-tooltip/dist/react-tooltip.css";
+import { Tooltip } from "react-tooltip";
 import BlockiesSvg from "blockies-react-svg";
 
 function StreamsList(props) {
@@ -76,6 +78,8 @@ function StreamsList(props) {
                       onClick={() =>
                         props.setShowList({ show: false, index: key })
                       }
+                      data-tooltip-id="my-tooltip6"
+                      data-tooltip-content={"Click to see the timeline details"}
                     >
                       <td>
                         <div className="reciever-address">
@@ -149,6 +153,7 @@ function StreamsList(props) {
                 </tr>
               )}
             </tbody>
+            <Tooltip id="my-tooltip6" />
           </table>
         </div>
       </div>
